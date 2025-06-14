@@ -68,7 +68,7 @@ AI Number Recognition/
 ### Prerequisites
 - Rust (2024 edition or later)
 - Web browser with JavaScript enabled
-- MNIST dataset files (not included in project)
+- MNIST dataset files (not included in project) - Note the location of the dataset files in the project structure
 
 ### Installation & Setup
 **NOTE: Not suggested for running on public ports. This is a learning project, and so doesn't have adequate security measures in place.**
