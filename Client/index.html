@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Number Recognition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>    
+    <div class="container">
+        <div class="header">
+            <h1>AI Number Recognition</h1>
+            <div class="nav-buttons">
+                <a href="model-trainer.html" class="nav-button">Model Trainer</a>
+                <a href="heatmap.html" class="nav-button">Heat Map Analysis</a>
+            </div>
+        </div>
+        
+        <div class="server-config">
+            <h3>Server Configuration</h3>
+            <div class="config-controls">
+                <label for="server-ip">Server IP:</label>
+                <input type="text" id="server-ip" placeholder="localhost:3030" value="localhost:3030">
+                <button id="reset-server-btn" class="secondary-button">Reset to Default</button>
+                <span id="server-status" class="server-status">Not connected</span>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="canvas-container">
+                <canvas id="drawing-canvas"></canvas>
+            </div>
+            <button id="clear-btn">Clear Canvas</button>
+            <div class="prediction-container" id="prediction-container">
+                <div id="prediction-result"></div>
+                <div id="confidence-level"></div>
+            </div>
+        </div>    </div>
+    <script src="server-config.js"></script>
+    <script src="neural-network.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

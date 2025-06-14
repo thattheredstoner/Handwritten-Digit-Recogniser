@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Number Recognition - Model Trainer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">        <div class="header">
+            <h1>MNIST Model Trainer</h1>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-button">Drawing Tool</a>
+                <a href="heatmap.html" class="nav-button">Heat Map Analysis</a>
+            </div>
+        </div>
+        
+        <div class="server-config">
+            <h3>Server Configuration</h3>
+            <div class="config-controls">
+                <label for="server-ip">Server IP:</label>
+                <input type="text" id="server-ip" placeholder="localhost:3030" value="localhost:3030">
+                <button id="reset-server-btn" class="secondary-button">Reset to Default</button>
+                <span id="server-status" class="server-status">Not connected</span>
+            </div>
+        </div>
+        
+        <div class="model-container">
+            <div class="training-section">
+                <h2>Training Controls</h2>
+                <div class="training-controls">
+                    <div class="control-group">
+                        <label for="epochs">Epochs:</label>
+                        <input type="number" id="epochs" value="5" min="1" max="100">
+                    </div>
+                    <div class="control-group">
+                        <label for="batch-size">Batch Size:</label>
+                        <input type="number" id="batch-size" value="100" min="10" max="1000">
+                    </div>
+                    <div class="control-group">
+                        <label for="learning-rate">Learning Rate:</label>
+                        <input type="number" id="learning-rate" value="0.01" min="0.001" max="1" step="0.001">
+                    </div>                    <button id="train-button" class="primary-button">Train New Model</button>
+                    <button id="continue-button" class="primary-button" disabled>Continue Training</button>
+                    <button id="delete-button" class="delete-button" disabled>Delete Model</button>
+                    <button id="cancel-button" class="secondary-button" disabled>Cancel Training</button>
+                </div>
+                <div class="status-container">
+                    <div id="training-status">Model not trained yet</div>
+                    <progress id="training-progress" value="0" max="100"></progress>
+                </div>
+            </div>
+            
+            <div class="testing-section">
+                <h2>Testing Controls</h2>
+                <div class="testing-controls">
+                    <button id="show-random-button" disabled>Show Random</button>
+                    <button id="show-misclassified-button" disabled>Show Misclassified</button>
+                </div>
+                <div class="metrics-container">
+                    <div class="metric">
+                        <span class="metric-label">Accuracy:</span>
+                        <span id="accuracy-value">-</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Correctly Classified:</span>
+                        <span id="correct-count">-</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Misclassified:</span>
+                        <span id="wrong-count">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="example-container">
+            <div class="example-display">
+                <h3>Current Example</h3>
+                <div class="canvas-wrapper">
+                    <canvas id="example-canvas" width="280" height="280"></canvas>
+                </div>
+                <div class="prediction-details">
+                    <div class="detail">
+                        <span class="detail-label">Actual:</span>
+                        <span id="actual-label" class="detail-value">-</span>
+                    </div>
+                    <div class="detail">
+                        <span class="detail-label">Predicted:</span>
+                        <span id="predicted-label" class="detail-value">-</span>
+                    </div>
+                    <div class="detail">
+                        <span class="detail-label">Confidence:</span>
+                        <span id="confidence-value" class="detail-value">-</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="confidence-bars">
+                <h3>Prediction Confidence</h3>
+                <div id="confidence-bars-container"></div>
+            </div>
+        </div>    </div>
+    
+    <script src="server-config.js"></script>
+    <script src="neural-network.js"></script>
+    <script src="model-trainer.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Number Recognition - Heat Map Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">        <div class="header">
+            <h1>MNIST Heat Map Analysis</h1>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-button">Drawing Tool</a>
+                <a href="model-trainer.html" class="nav-button">Model Trainer</a>
+            </div>
+        </div>
+        
+        <div class="server-config">
+            <h3>Server Configuration</h3>
+            <div class="config-controls">
+                <label for="server-ip">Server IP:</label>
+                <input type="text" id="server-ip" placeholder="localhost:3030" value="localhost:3030">
+                <button id="reset-server-btn" class="secondary-button">Reset to Default</button>
+                <span id="server-status" class="server-status">Not connected</span>
+            </div>
+        </div>
+        
+        <div class="controls-section">
+            <div class="control-group">
+                <button id="load-data-button" class="primary-button">Load Test Data</button>
+                <button id="refresh-button" class="secondary-button" disabled>Refresh Data</button>
+            </div>
+            <div class="status-container">
+                <div id="status-message">Click "Load Test Data" to begin analysis</div>
+                <div id="data-summary" class="data-summary hidden">
+                    <span>Total Samples: <span id="total-samples">-</span></span>
+                    <span>Accuracy: <span id="accuracy">-</span></span>
+                    <span>Correct: <span id="correct">-</span></span>
+                    <span>Misclassified: <span id="misclassified">-</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h3>Display Filters</h3>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label>
+                        <input type="radio" name="display-mode" value="all" checked>
+                        Show All Predictions
+                    </label>
+                </div>
+                <div class="filter-group">
+                    <label>
+                        <input type="radio" name="display-mode" value="correct">
+                        Show Only Correct Predictions
+                    </label>
+                </div>
+                <div class="filter-group">
+                    <label>
+                        <input type="radio" name="display-mode" value="incorrect">
+                        Show Only Misclassified
+                    </label>
+                </div>
+                <div class="filter-group">
+                    <label>
+                        <input type="radio" name="display-mode" value="incorrect-by-ai-guess">
+                        Show Misclassified (sorted by AI guess)
+                    </label>
+                </div>
+                <div class="filter-group">
+                    <label for="confidence-threshold">Min Confidence:</label>
+                    <input type="range" id="confidence-threshold" min="0" max="1" step="0.1" value="0">
+                    <span id="confidence-value">0%</span>
+                </div>
+            </div>
+        </div>
+        <div class="heatmap-container">
+            <h2>Pixel Overlap Heat Maps by Digit</h2>
+            <p class="heatmap-description">
+                These heat maps show pixel-level overlaps from all sample images of each digit. 
+                Brighter colors indicate areas where multiple images have ink, revealing common patterns and stroke positions.
+            </p>
+              <!-- Heat Map Legend -->
+            <div class="heatmap-legend">
+                <div class="legend-title">Heat Map Color</div>
+                <div class="legend-description">Colors represent pixel overlap intensity across all samples:</div>
+                <div class="legend-colors">
+                    <span class="legend-item"><span class="legend-color" style="background: rgb(0,0,255)"></span> Low overlap</span>
+                    <span class="legend-item"><span class="legend-color" style="background: rgb(0,255,255)"></span> Medium-low</span>
+                    <span class="legend-item"><span class="legend-color" style="background: rgb(0,255,0)"></span> Medium</span>
+                    <span class="legend-item"><span class="legend-color" style="background: rgb(255,255,0)"></span> Medium-high</span>
+                    <span class="legend-item"><span class="legend-color" style="background: rgb(255,0,0)"></span> High overlap</span>
+                </div>
+            </div>
+            
+            <div class="heatmap-grid" id="heatmap-grid">
+                <!-- Heat maps will be generated dynamically -->
+            </div>
+        </div>
+        <div class="examples-container">
+            <h2>All Test Examples</h2>
+            <div class="examples-controls">
+                <div class="pagination-controls">
+                    <button id="prev-page-button" class="secondary-button" disabled>Previous</button>
+                    <span id="page-info">Page 1 of 1</span>
+                    <button id="next-page-button" class="secondary-button" disabled>Next</button>
+                </div>
+                <div class="per-page-control">
+                    <label for="items-per-page">Items per page:</label>
+                    <select id="items-per-page">
+                        <option value="50">50</option>
+                        <option value="100" selected>100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                    </select>
+                </div>
+            </div>
+            <div class="examples-grid" id="examples-grid">
+                <!-- Example images will be generated dynamically -->
+            </div>        </div>
+    </div>
+    
+    <script src="server-config.js"></script>
+    <script src="heatmap.js"></script>
+</body>
+</html>
