@@ -22,7 +22,7 @@ AI Number Recognition/
 │   ├── src/
 │   │   └── main.rs        # Neural network implementation & API server
 │   ├── Cargo.toml         # Rust dependencies
-│   ├── mnist-neural-network.exe
+│   ├── mnist-neural-network.exe # Compiled program
 │   ├── trained_model.json # Saved model weights
 │   └── test_data.json     # Test dataset cache
 ├── Client/                # Web frontend
@@ -68,7 +68,7 @@ AI Number Recognition/
 ### Prerequisites
 - Rust (2024 edition or later)
 - Web browser with JavaScript enabled
-- MNIST dataset files (not included in project) - Note the location of the dataset files in the project structure
+- MNIST dataset files (not included in project) - Note the location of the dataset files in the project structure relative to the compiled program
 
 ### Installation & Setup
 **NOTE: Not suggested for running on public ports. This is a learning project, and so doesn't have adequate security measures in place.**
